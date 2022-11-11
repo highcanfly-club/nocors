@@ -45,9 +45,9 @@ const httpTrigger: AzureFunction = async function (
   "X-Content-Type-Options" in reqHeaders
     ? delete reqHeaders["X-Content-Type-Options"]
     : "";
-  "x-ms-original-url" in reqHeaders
-    ? delete reqHeaders["x-ms-original-url"]
-    : "";
+  // "x-ms-original-url" in reqHeaders
+  //   ? delete reqHeaders["x-ms-original-url"]
+  //   : "";
   "host" in reqHeaders ? delete reqHeaders["host"] : "";
 
   const options: OptionsOfTextResponseBody = {

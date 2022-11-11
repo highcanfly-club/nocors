@@ -1,0 +1,11 @@
+{
+  "routes": [
+    {
+      "route": "/!*",
+      "rewrite": "/api/redirect"
+    }
+  ],
+  "platform": {
+    "apiRuntime": "node:16"
+  }
+}
