@@ -1,0 +1,15 @@
+/* TEAM */
+	Creator: Ronan LE MEILLAT
+	Contact: Ronan.Le_meillat [at] sctg.eu.org
+	From: Les Contamines-Monjoie, Haute-Savoie, France
+
+/* THANKS */
+
+	Hosting: Github, Cloudflare, Cloudinary, Sanity.io
+
+
+/* SITE */
+	Language: French
+	Doctype:HTML5
+	IDE: Visual Studio Code
+    Frameworks: Vue3, TailwindCSS, CoreJS

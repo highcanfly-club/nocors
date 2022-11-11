@@ -1,0 +1,41 @@
+{
+  "name": "template-vitejs-vue3-tailwindcss-fontawesome",
+  "private": true,
+  "version": "0.0.4",
+  "type": "module",
+  "scripts": {
+    "preinstall": "cd api && npm install",
+    "dev": "vite",
+    "build": "vite build && gulp licenses",
+    "preview": "vite preview",
+    "start": "npx @azure/static-web-apps-cli start https://localhost:5173 --swa-config-location ./ -s -e localhost-cert.pem -k localhost-key.pem -p 8788 --api-location ./api -t 120 --run 'npm run dev'",
+    "prestart": "cd api && tsc -w &",
+    "create-cert": "openssl req -x509 -newkey rsa:4096 -keyout localhost-key.pem -out localhost-cert.pem -sha256 -nodes -days 365"
+  },
+  "dependencies": {
+    "@pqina/flip": "^1.7.7",
+    "vue": "^3.2.45",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@azure/static-web-apps-cli": "^1.0.2",
+    "@fullhuman/postcss-purgecss": "^5.0.0",
+    "@highcanfly-club/fontawesome": "^1.0.0",
+    "@sctg/fontminify": "^1.0.4",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.8",
+    "@types/glob": "^8.0.0",
+    "@vitejs/plugin-vue": "^3.2.0",
+    "autoprefixer": "^10.4.13",
+    "gulp": "^4.0.2",
+    "gulp-append-prepend": "^1.0.9",
+    "npm-check-updates": "^16.3.20",
+    "postcss": "^8.4.19",
+    "postcss-purgefonts": "^1.0.2",
+    "sass": "^1.56.1",
+    "tailwindcss": "^3.2.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4",
+    "vite": "^3.2.3"
+  }
+}
