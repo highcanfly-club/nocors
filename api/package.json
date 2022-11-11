@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "type": "module",
+  "engines": {
+    "node": ">=16.14.2"
+  },
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",

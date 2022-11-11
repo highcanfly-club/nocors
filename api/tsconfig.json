@@ -2,12 +2,17 @@
   "compilerOptions": {
     "module": "ESNext",
     "target": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports":true,
     "outDir": "dist",
-    "resolveJsonModule":true,
+    "esModuleInterop": true,
+    "moduleResolution": "nodenext",
+    "resolveJsonModule": true,
     "rootDir": ".",
+    "baseUrl": ".",
     "sourceMap": true,
-    "strict": false
-  }
+    "strict": false,
+    "paths": {
+      "@/config/*": ["config/*"]
+    }
+  },
+  "exclude": ["node_modules"]
 }
