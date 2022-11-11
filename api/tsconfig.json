@@ -1,8 +1,11 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
-    "target": "es6",
+    "module": "ESNext",
+    "target": "ESNext",
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports":true,
     "outDir": "dist",
+    "resolveJsonModule":true,
     "rootDir": ".",
     "sourceMap": true,
     "strict": false

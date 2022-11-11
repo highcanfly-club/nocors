@@ -2,6 +2,7 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
     "build": "tsc",
     "watch": "tsc -w",
@@ -9,10 +10,14 @@
     "start": "func start",
     "test": "echo \"No tests yet...\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "agentkeepalive": "^4.2.1",
+    "got": "^12",
+    "iconv-lite": "^0.6.3"
+  },
   "devDependencies": {
-    "@azure/functions": "^3.0.0",
+    "@azure/functions": "^3.2.0",
     "@types/node": "16.x",
-    "typescript": "^4.0.0"
+    "typescript": "^4.8.4"
   }
 }
