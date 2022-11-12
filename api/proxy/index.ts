@@ -57,6 +57,14 @@ const cleanRequestHeaders = (headers: Headers): Headers => {
   return requestHeaders;
 };
 
+/**
+ * Proxy the request
+ * @param url the url to proxy
+ * @param method GET, POST…
+ * @param requestHeaders 
+ * @param body 
+ * @returns 
+ */
 const remoteRequest = async (url:string, method:Method, requestHeaders:Headers, body:any)=>{
   const options: OptionsOfTextResponseBody = {
     method: method,
@@ -70,9 +78,15 @@ const remoteRequest = async (url:string, method:Method, requestHeaders:Headers, 
   return res
 }
 
+/**
+ * Check if the requested url is in the whitelist
+ * @param url 
+ * @returns 
+ */
 const isAllowed = (url:string):boolean => {
   return !(url.match(WHITELIST_REGEX) === null)
 }
+
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
