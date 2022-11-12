@@ -27,7 +27,7 @@
     "autoprefixer": "^10.4.13",
     "gulp": "^4.0.2",
     "gulp-append-prepend": "^1.0.9",
-    "npm-check-updates": "^16.3.20",
+    "npm-check-updates": "^16.3.22",
     "postcss": "^8.4.19",
     "postcss-purgefonts": "^1.0.2",
     "sass": "^1.56.1",
