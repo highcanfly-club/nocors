@@ -7,7 +7,7 @@ This website use:
 - Font Awesome
 - And many others
 */
-import { $require } from "@/utilities/viteHelper"
+import { $require } from "@/utilities/viteHelper.js"
 
 const daysOfWeek = [
   "Monday",

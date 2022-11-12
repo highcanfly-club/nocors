@@ -9,3 +9,12 @@ This website use:
 <template>
   <router-view />
 </template>
+<script setup lang="ts">
+import { $require } from '@/utilities/viteHelper';
+
+const iconLink = document.createElement("link");
+iconLink.setAttribute("type", "image/svg+xml");
+iconLink.setAttribute("rel", "icon");
+iconLink.setAttribute("href", $require("@/assets/LogoSCTGText.svg"));
+document.head.appendChild(iconLink);
+</script>

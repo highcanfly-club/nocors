@@ -49,6 +49,19 @@ const cleanRequestHeaders = (headers: Headers): Headers => {
   return requestHeaders;
 };
 
+const remoteRequest = async (url:string, method:Method, requestHeaders:Headers, body:any)=>{
+  const options: OptionsOfTextResponseBody = {
+    method: method,
+    decompress: false,
+    headers: requestHeaders,
+    body: body,
+    http2: true,
+    throwHttpErrors: false
+  };
+  const res = await got(url, options);
+  return res
+}
+
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
@@ -58,7 +71,6 @@ const httpTrigger: AzureFunction = async function (
   const url = req.query.url || (req.body && req.body.url);
   const requestHeaders: Headers = cleanRequestHeaders(req.headers);
   context.log(`HTTP trigger function processed a request METHOD:${method} URL:${url}.`);
-
 
   if (req.method == "OPTIONS")
   {
@@ -71,15 +83,7 @@ const httpTrigger: AzureFunction = async function (
   }
   else // not options so general case
   {
-    const options: OptionsOfTextResponseBody = {
-      method: method,
-      decompress: false,
-      headers: requestHeaders,
-      body: req.body,
-      http2: true,
-      throwHttpErrors: false
-    };
-    const res = await got(url, options);
+    const res = await remoteRequest(url,method,requestHeaders,req.body)
     context.res = {
       status: res.statusCode,
       body: res.body,
