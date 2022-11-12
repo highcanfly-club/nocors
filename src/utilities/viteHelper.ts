@@ -1,3 +1,13 @@
+/*!
+=========================================================
+* © 2022 Ronan LE MEILLAT for SCTG Développement
+=========================================================
+This website use:
+- Vuejs v3
+- Font Awesome
+- And many others
+*/
+
 /**
  * 
  * @param url absolute path of asset (must begin with @/assets/)

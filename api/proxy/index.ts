@@ -1,70 +1,95 @@
+/*!
+=========================================================
+* © 2022 Ronan LE MEILLAT for SCTG Développement
+=========================================================
+This website use:
+- Vuejs v3
+- Font Awesome
+- And many others
+*/
 import {
   AzureFunction,
   Context,
   HttpRequest,
-  HttpRequestHeaders,
+  HttpResponseHeaders,
 } from "@azure/functions";
-import got, { Method, OptionsOfTextResponseBody } from "got";
+import got, { Headers, Method, OptionsOfTextResponseBody } from "got";
 import packageVersion from "../package.json" assert { type: "json" };
 
-//function fix(reqHeaders:HttpRequestHeaders, myHeaders,isOPTIONS:boolean) {
-//   //            myHeaders.set("Access-Control-Allow-Origin", "*");
-//   myHeaders.set("Access-Control-Allow-Origin", reqHeaders.get("Origin"));
-//   if (isOPTIONS) {
-//       myHeaders.set("Access-Control-Allow-Methods", reqHeaders.get("access-control-request-method"));
-//       acrh = event.request.headers.get("access-control-request-headers");
-//       //myHeaders.set("Access-Control-Allow-Credentials", "true");
+/**
+ * Cosntruct a minimal set of CORS headers
+ * @param origin CORS origin
+ * @returns a set of required
+ */
+const getCorsHeaders = (origin: string, method:Method): HttpResponseHeaders => {
+  return {
+    "Access-Control-Allow-Origin": origin || "*",
+    "Access-Control-Allow-Credentials": "true",
+    "Access-Control-Allow-Headers":
+      "Origin, X-Requested-With, Content-Type, Content-Encoding, Accept",
+    "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PATCH, PUT, DELETE",
+    Via: `noCors-for-Azure-StaticWebApp v${packageVersion.version}`,
+    "x-original-method": method
+  };
+};
 
-//       if (acrh) {
-//           myHeaders.set("Access-Control-Allow-Headers", acrh);
-//       }
+/**
+ * Remove conflicting headers
+ * @param headers
+ * @returns a copy of the source headers
+ */
+const cleanRequestHeaders = (headers: Headers): Headers => {
+  const requestHeaders: Headers = { ...headers }; //real copy
+  "X-Content-Type-Options" in requestHeaders
+    ? delete requestHeaders["X-Content-Type-Options"]
+    : "";
 
-//       myHeaders.delete("X-Content-Type-Options");
-//   }
-//   return myHeaders;
-// }
+  "host" in requestHeaders ? delete requestHeaders["host"] : "";
+  "connection" in requestHeaders ? delete requestHeaders["connection"] : "";
+  return requestHeaders;
+};
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  context.log("HTTP trigger function processed a request.");
-  const isOPTIONS = req.method == "OPTIONS";
-  const corsHeaders = {
-    "Access-Control-Allow-Origin": req.headers.origin || "*",
-    "Access-Control-Allow-Credentials": true,
-    "Access-Control-Allow-Headers":
-      "Origin, X-Requested-With, Content-Type, Content-Encoding, Accept",
-    "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PATCH, PUT, DELETE",
-    Via: `noCors v${packageVersion.version}`,
-  };
-  const reqHeaders = { ...req.headers, ...corsHeaders };
+  const method: Method = req.method != "CONNECT" ? req.method : "GET";
+  const corsHeaders = getCorsHeaders(req.headers.origin,method);
   const url = req.query.url || (req.body && req.body.url);
-  let method: Method = req.method != "CONNECT" ? req.method : "GET";
+  const requestHeaders: Headers = cleanRequestHeaders(req.headers);
+  context.log(`HTTP trigger function processed a request METHOD:${method} URL:${url}.`);
 
-  "X-Content-Type-Options" in reqHeaders
-    ? delete reqHeaders["X-Content-Type-Options"]
-    : "";
-  // "x-ms-original-url" in reqHeaders
-  //   ? delete reqHeaders["x-ms-original-url"]
-  //   : "";
-  "host" in reqHeaders ? delete reqHeaders["host"] : "";
 
-  const options: OptionsOfTextResponseBody = {
-    method: method,
-    decompress: false,
-    headers: reqHeaders as any,
-  };
-  console.log(req.headers);
-  console.log(reqHeaders);
-  const res = await got(url, options);
+  if (req.method == "OPTIONS")
+  {
+    context.res = {
+      headers: {
+        Allow: 'OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE',
+        ...corsHeaders,
+      },
+    };
+  }
+  else // not options so general case
+  {
+    const options: OptionsOfTextResponseBody = {
+      method: method,
+      decompress: false,
+      headers: requestHeaders,
+      body: req.body,
+      http2: true,
+    };
+    console.log(req.headers);
+    console.log(requestHeaders);
+    const res = await got(url, options);
+  
+    context.res = {
+      body: res.body,
+      headers: {
+        ...corsHeaders,
+      },
+    };
+  }
 
-  context.res = {
-    body: res.body,
-    headers: {
-      ...reqHeaders,
-    },
-  };
 };
 
 export default httpTrigger;

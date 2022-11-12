@@ -5,7 +5,7 @@
 
 /* THANKS */
 
-	Hosting: Github, Cloudflare, Cloudinary, Sanity.io
+	Hosting: Github, Azure
 
 
 /* SITE */

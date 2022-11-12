@@ -10,7 +10,8 @@
         "post",
         "options",
         "put",
-        "delete"
+        "delete",
+        "trace"
       ]
     },
     {

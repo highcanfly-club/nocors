@@ -1,6 +1,6 @@
 /*!
 =========================================================
-* © 2022 Ronan LE MEILLAT for %CLIENT_NAME%
+* © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
 - Vuejs v3
