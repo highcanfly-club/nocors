@@ -15,6 +15,14 @@ import {
 } from "@azure/functions";
 import got, { Headers, Method, OptionsOfTextResponseBody } from "got";
 import packageVersion from "../package.json" assert { type: "json" };
+import whitelistConf from "../common/config/whitelisteConf.json" assert { type: "json" };
+
+// WHITELIST is passed via env variable process.env.PROXY_WHITELIST
+const WHITELIST_REGEX = new RegExp(whitelistConf.regex)
+
+// you can use something like
+// const WHITELIST_REGEX=/https:\/\/YOURSITE.com\/.*/
+//
 
 /**
  * Cosntruct a minimal set of CORS headers
@@ -62,6 +70,9 @@ const remoteRequest = async (url:string, method:Method, requestHeaders:Headers, 
   return res
 }
 
+const isAllowed = (url:string):boolean => {
+  return !(url.match(WHITELIST_REGEX) === null)
+}
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
@@ -72,7 +83,18 @@ const httpTrigger: AzureFunction = async function (
   const requestHeaders: Headers = cleanRequestHeaders(req.headers);
   context.log(`HTTP trigger function processed a request METHOD:${method} URL:${url}.`);
 
-  if (req.method == "OPTIONS")
+  if (!isAllowed(url))
+  {
+    context.res = {
+      status: 403,
+      body: 'Access to this proxy is forbidden for you ☹️',
+      headers: {
+        Allow: 'OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE',
+        ...corsHeaders,
+      },
+    };
+  }
+  else if (req.method == "OPTIONS")
   {
     context.res = {
       headers: {

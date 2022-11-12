@@ -1,12 +1,25 @@
-# Vue 3 + Vite + Typescript + Tailwindcss + Fontawesome + Azure functions
+# Simplest noCors proxy for Azure Static Web App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses [Vue 3](https://vuejs.org/), [Vite](https://vitejs.dev/), [Tailwind css](https://tailwindcss.com/) and [Fontawesome 6](https://fontawesome.com/).
+This is a very minimalistic proxy for enabling CORS on non CORS enabled sites.  
+Integrate /api in your Azure Static Web App 
+Edit /api/proxy/index.ts WHITELIST_REGEX to match your requirement 
+```js
+const WHITELIST_REGEX=/https:\/\/YOURSITE.com\/.*/
+```
+or carrefully open to anything 
+```js
+const WHITELIST_REGEX=/.*/
+```
+Just prefix your fetch() calls with https://YOURSITE/api/proxy?url=  .  
+
+## Vue 3 + Vite + Typescript + Tailwindcss + Azure functions
+
+This template should help get you started developing with Vue 3 in Vite. The template uses [Vue 3](https://vuejs.org/), [Vite](https://vitejs.dev/), [Tailwind css](https://tailwindcss.com/) .
 
 ## Vite
 
 - @ path is defined as ./src
 - ~ path is defined as ./node_modules
-- § path is defined as ./fontawesome
 - npm run dev : launch development environment and serve it to https://localhost:5173
 - npm run build : compile, optimize and minify to dist/ directory
 - npm run preview : serve dist/ directory to https://localhost:4173
@@ -25,27 +38,6 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 - Tailwind is embedded with my default theme in tailwindcss.config.cjs
 - All classes are availables in development environment (usefull for UI debug with devtools)
 - Built css is parsed by Purgecss for removing all unused classes, take a look to postcss.config.cjs 
-
-## Fontawesome 6 using private Fontawesome 6 package
-
-- use private Fontawesome 6 package 
-create a .npmrc with 
-```
-@highcanfly-club:registry=https://npm.pkg.github.com
-//npm.pkg.github.com/:_authToken=${NPM_GITHUB_TOKEN}
-```
-
-- install kit
-request a personal access token at Github. For doing that go to your personal settings and hit "developer settings"
-
-```sh
-NPM_GITHUB_TOKEN=ghp_jX2t6JA_REAL_TOKEN_2c30tMrA0 npm i -D @highcanfly-club/fontawesome @sctg/fontminify
-# if you decide to put your token in the .npmrc be sure to exclude it with .gitignore
-```
-
-Also be sure to request the read permission to the package owner.  
-If you deploy it using a CI/CD workflow external to Github you must request a personal access token and register an environment variable with your token… See [instructions](https://github.com/highcanfly-club/fontawesome/blob/main/README.md)
-
 
 ## Recommended IDE Setup
 

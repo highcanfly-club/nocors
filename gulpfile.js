@@ -3,7 +3,7 @@
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 */
 import gulp from 'gulp'
@@ -19,7 +19,7 @@ gulp.task("licensesSrc", async function () {
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 */`)
     )
@@ -35,7 +35,7 @@ This website use:
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 -->`)
     )
@@ -52,7 +52,7 @@ gulp.task("licenses", async function () {
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 */`)
     )
@@ -66,7 +66,7 @@ This website use:
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 -->`)
     )
@@ -81,7 +81,7 @@ This website use:
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 */`)
     )

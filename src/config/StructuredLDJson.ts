@@ -62,8 +62,8 @@ export const addJsonLD = () => {
     name: "Highcanfly wonderful template",
     alternateName: ["High Can Fly", "Dev team"],
     naics: "711211",
-    image: $require('@/assets/vue.svg'),
-    logo: $require('@/assets/vue.svg'),
+    image: $require('@/assets/LogoSCTGText.svg'),
+    logo: $require('@/assets/LogoSCTGText.svg'),
     telephone: "+33 1 23 45 67 89",
     nonprofitStatus: "Nonprofit501c7",
     url: new URL(document.location.href).origin,
@@ -77,24 +77,9 @@ export const addJsonLD = () => {
     knowsLanguage: [
       {
         "@type": "Language",
-        name: "French",
-        alternateName: "fr"
-      },
-      {
-        "@type": "Language",
         name: "English",
         alternateName: "en"
-      },
-      {
-        "@type": "Language",
-        name: "Spanish",
-        alternateName: "es"
-      },
-      {
-        "@type": "Language",
-        name: "Portuguese",
-        alternateName: "pt"
-      },
+      }
     ],
     geo: {
       "@type": "GeoCoordinates",

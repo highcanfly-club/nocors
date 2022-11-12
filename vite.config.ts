@@ -3,20 +3,18 @@
 * © 2022 Ronan LE MEILLAT for SCTG Développement
 =========================================================
 This website use:
-- Vite, Vue3, FontAwesome 6, TailwindCss 3
+- Vite, Vue3, TailwindCss 3
 - And many others
 */
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from 'path'
-import vitePluginFontawesomeminify from '@highcanfly-club/fontawesome'
 import fs from 'fs'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
-    vitePluginFontawesomeminify()
   ],
   resolve: {
     alias: {

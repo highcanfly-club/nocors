@@ -38,3 +38,4 @@ launch-*
 l*.pem
 l*.key
 
+api/common/config/whitelisteConf.json
