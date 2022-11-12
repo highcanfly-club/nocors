@@ -77,12 +77,11 @@ const httpTrigger: AzureFunction = async function (
       headers: requestHeaders,
       body: req.body,
       http2: true,
+      throwHttpErrors: false
     };
-    console.log(req.headers);
-    console.log(requestHeaders);
     const res = await got(url, options);
-  
     context.res = {
+      status: res.statusCode,
       body: res.body,
       headers: {
         ...corsHeaders,
