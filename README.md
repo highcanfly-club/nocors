@@ -50,9 +50,9 @@ npm i -D --save @cloudflare/workers-types
 ```
 create a /functions/proxy.ts file
 ```ts
-import {proxyRequest} from "@sctg/nocors-pages"
+import {proxyPagesRequest} from "@sctg/nocors-pages"
 const WHITELIST_REGEX=".*"
 export const onRequest: PagesFunction = async (context) => {
-  return proxyRequest(context,WHITELIST_REGEX)
+  return proxyPagesRequest(context,whitelistConf.regex)
 };
 ```
