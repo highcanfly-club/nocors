@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "target": "ES2017",
+    "strictNullChecks": true,
+    "strictFunctionTypes": true,
+    "declaration": true,
+    "noEmit": false,
+    "noEmitOnError": false,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "outDir":"dist",
+    "strict": true,
+    "forceConsistentCasingInFileNames":true,
+    "types": ["@cloudflare/workers-types"]
+  },
+  "exclude": ["node_modules/**/*","dist/**/*"]
+}

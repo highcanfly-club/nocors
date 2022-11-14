@@ -1,0 +1,6 @@
+{
+  "recommendations": [
+    "ms-vscode.vscode-node-azure-pack",
+    "ms-azuretools.vscode-azurefunctions"
+  ]
+}

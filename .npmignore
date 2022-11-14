@@ -1,0 +1,8 @@
+.DS_Store
+.editorconfig
+.travis.yml
+npm-debug.log
+test/
+node_modules/
+TODO.md
+CHANGELOG.md

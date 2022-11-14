@@ -1,0 +1,48 @@
+{
+  "name": "@sctg/nocors",
+  "version": "0.9.9",
+  "description": "Minimalist noCors proxy for servless app",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "private": false,
+  "keywords": [
+    "cors",
+    "azure",
+    "cloudflare"
+  ],
+  "author": "Ronan LE Meillat",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+hhttps://github.com/highcanfly-club/nocors"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc || exit 0",
+    "prepublish": "npm run build",
+    "test": "mocha",
+    "coverage": "nyc mocha --reporter spec --check-leaks test/"
+  },
+  "devDependencies": {
+    "@azure/functions": "^3.2.0",
+    "@cloudflare/workers-types": "^3.18.0",
+    "chai": "^4.3.7",
+    "got": "^12.5.2",
+    "mocha": "^10.1.0",
+    "typescript": "^4.8.4"
+  },
+  "bugs": {
+    "url": "https://github.com/highcanfly-club/nocors/issues"
+  },
+  "homepage": "https://github.com/highcanfly-club/nocors#readme",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "publishConfig": {
+    "tag": "beta"
+  }
+}
