@@ -45,8 +45,7 @@ const remoteRequest = async (
     http2: true,
     throwHttpErrors: false,
   };
-  const res = await got(url, options);
-  return res;
+  return got(url, options);
 };
 
 export type ProxyAzureFunction = (
@@ -102,9 +101,7 @@ export const proxyAzureRequest: ProxyAzureFunction = async function (
       return {
         status: res.statusCode,
         body: res.body,
-        headers: {
-          ...corsHeaders,
-        },
+        headers: {...corsHeaders,...{'content-type':((res as any).headers)['content-type']}},
       };
     }
   } catch (error: any) {
