@@ -3,6 +3,10 @@
 This is a very minimalistic proxy for enabling CORS on non CORS enabled sites.  
 
 ## For Azure Static Web Apps  
+# demo
+[Source code](https://github.com/highcanfly-club/nocors/tree/main).   
+https://nocors.kiik.cf/api/proxy?url=https://www.example.org
+# usage
 Create a new api entry with VSCode Azure tools or manually.  
 ```sh
 cd api
@@ -36,6 +40,10 @@ export default httpTrigger;
 ```
 
 ## For Coudflare Pages
+# demo
+[Source code](https://github.com/highcanfly-club/nocors-cf).   
+https://nocors.pages.dev/proxy?url=https://www.example.org
+# usage
 ```sh
 npm i --save @sctg/nocors-pages
 npm i -D --save @cloudflare/workers-types
