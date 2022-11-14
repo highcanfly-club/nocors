@@ -27,7 +27,6 @@
     "build-pages":"npm run prepare-pages && npm run build",
     "build": "rm -rf dist && cd build && npm run _build",
     "_build": "tsc && mv dist .. || exit 0",
-    "prepublish": "npm run build",
     "test": "mocha",
     "coverage": "nyc mocha --reporter spec --check-leaks test/"
   },
