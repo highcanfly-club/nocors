@@ -16,8 +16,7 @@ jobs:
         with:
           node-version: 16
       - run: npm ci
-      - run: npm run prepare-azure
-      - run: npm run build
+      - run: npm run build-azure
       - run: npm test
 
   publish-npm:
