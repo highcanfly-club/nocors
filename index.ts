@@ -5,6 +5,8 @@
  */
 import type { HttpRequestHeaders, HttpResponseHeaders } from "@azure/functions";
 import packageVersion from "./package.json" assert { type: "json" };
+import { proxyAzureRequest as _proxyAzureRequest } from "./Azure/index.js";
+import { proxyPagesRequest as _proxyPagesRequest } from "./Pages/index.js";
 
 export declare type Method =
   | "GET"
@@ -52,19 +54,18 @@ export function fromEntries(
 }
 
 export class _Headers extends Map<string, string> {
-  constructor(headers: Headers|Map<string,string>|HttpRequestHeaders) { //
-    let _headers:Map<string,string>
-    if (headers.hasOwnProperty('append')){
+  constructor(headers: Headers | Map<string, string> | HttpRequestHeaders) {
+    //
+    let _headers: Map<string, string>;
+    if (headers.hasOwnProperty("append")) {
       // headers is of Headers|Map<string,string>
-      _headers = new Map<string,string>((headers as Headers).entries())
-    }
-    else if (headers.hasOwnProperty('has')){
+      _headers = new Map<string, string>((headers as Headers).entries());
+    } else if (headers.hasOwnProperty("has")) {
       // headers is of Headers|Map<string,string>
-      _headers = headers as Map<string,string>
-    }
-    else{
+      _headers = headers as Map<string, string>;
+    } else {
       //headers is HttpRequestHeaders
-      _headers = new Map<string,string>(Object.entries(headers))
+      _headers = new Map<string, string>(Object.entries(headers));
     }
     super(_headers);
   }
@@ -89,22 +90,6 @@ export const cleanRequestHeaders = (headers: _Headers): _Headers => {
 };
 
 /**
- * Remove conflicting headers
- * @param headers
- * @returns a copy of the source headers
- */
-//  const cleanRequestHeaders = (headers: Headers): Headers => {
-//   const requestHeaders: Headers = { ...headers }; //real copy
-//   "X-Content-Type-Options" in requestHeaders
-//     ? delete requestHeaders["X-Content-Type-Options"]
-//     : "";
-
-//   "host" in requestHeaders ? delete requestHeaders["host"] : "";
-//   "connection" in requestHeaders ? delete requestHeaders["connection"] : "";
-//   return requestHeaders;
-// };
-
-/**
  * Cosntruct a minimal set of CORS headers
  * @param origin CORS origin
  * @returns a set of required
@@ -124,15 +109,5 @@ export const getCorsHeaders = (
   };
 };
 
-//  const getCorsHeaders = (origin: string | null, method: Method): Headers => {
-//   const headersInit: HeadersInit = {
-//     "Access-Control-Allow-Origin": origin || "*",
-//     "Access-Control-Allow-Credentials": "true",
-//     "Access-Control-Allow-Headers":
-//       "Origin, X-Requested-With, Content-Type, Content-Encoding, Accept",
-//     "Access-Control-Allow-Methods": "OPTIONS, GET, POST, PATCH, PUT, DELETE",
-//     Via: `noCors-for-Cloudflare-Pages v${packageVersion.version}`,
-//     "x-original-method": method,
-//   };
-//   return new Headers(headersInit);
-// };
+export const proxyAzureRequest = _proxyAzureRequest;
+export const proxyPagesRequest = _proxyPagesRequest;

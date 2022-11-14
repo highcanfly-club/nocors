@@ -17,7 +17,7 @@ import {
   Context,
   HttpRequest,
 } from "@azure/functions";
-import { proxyAzureRequest } from "@sctg/nocors/Azure/index.js";
+import { proxyAzureRequest } from "@sctg/nocors";
 const WHITELIST_REGEX=".*"
 
 const httpTrigger: AzureFunction = async function (
@@ -42,7 +42,7 @@ npm i -D --save @cloudflare/workers-types
 ```
 create a /functions/proxy.ts file
 ```ts
-import {proxyRequest} from "@sctg/nocors/Pages"
+import {proxyRequest} from "@sctg/nocors"
 const WHITELIST_REGEX=".*"
 export const onRequest: PagesFunction = async (context) => {
   return proxyRequest(context,WHITELIST_REGEX)

@@ -1,6 +1,6 @@
 {
   "name": "@sctg/nocors",
-  "version": "0.9.9",
+  "version": "0.9.10",
   "description": "Minimalist noCors proxy for servless app",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
