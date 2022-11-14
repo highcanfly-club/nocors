@@ -1,6 +1,6 @@
 {
   "name": "@sctg/nocors",
-  "version": "0.9.10",
+  "version": "0.9.11",
   "description": "Minimalist noCors proxy for servless app",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,10 @@
     "node": ">=16"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc || exit 0",
+    "prepare-azure":"rm -rf build && mkdir -p build && cat src/index.ts src/azure.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Azure build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-azure/g' > build/package.json",
+    "prepare-pages":"rm -rf build && mkdir -p build && cat src/index.ts src/pages.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Pages build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-pages/g' > build/package.json",
+    "build": "rm -rf dist && cd build && npm run _build",
+    "_build": "tsc && mv dist .. || exit 0",
     "prepublish": "npm run build",
     "test": "mocha",
     "coverage": "nyc mocha --reporter spec --check-leaks test/"

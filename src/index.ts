@@ -4,9 +4,7 @@
  * @returns
  */
 import type { HttpRequestHeaders, HttpResponseHeaders } from "@azure/functions";
-import packageVersion from "./package.json" assert { type: "json" };
-import { proxyAzureRequest as _proxyAzureRequest } from "./Azure/index.js";
-import { proxyPagesRequest as _proxyPagesRequest } from "./Pages/index.js";
+import packageVersion from "../package.json" assert { type: "json" };
 
 export declare type Method =
   | "GET"
@@ -108,6 +106,3 @@ export const getCorsHeaders = (
     "x-original-method": method,
   };
 };
-
-export const proxyAzureRequest = _proxyAzureRequest;
-export const proxyPagesRequest = _proxyPagesRequest;

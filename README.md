@@ -6,7 +6,7 @@ This is a very minimalistic proxy for enabling CORS on non CORS enabled sites.
 Create a new api entry with VSCode Azure tools or manually.  
 ```sh
 cd api
-npm i --save @sctg/nocors
+npm i --save @sctg/nocors-azure
 npm i --save got
 npm i --save @azure/functions
 ```
@@ -17,7 +17,7 @@ import {
   Context,
   HttpRequest,
 } from "@azure/functions";
-import { proxyAzureRequest } from "@sctg/nocors";
+import { proxyAzureRequest } from "@sctg/nocors-azure";
 const WHITELIST_REGEX=".*"
 
 const httpTrigger: AzureFunction = async function (
@@ -37,12 +37,12 @@ export default httpTrigger;
 
 ## For Coudflare Pages
 ```sh
-npm i --save @sctg/nocors
+npm i --save @sctg/nocors-pages
 npm i -D --save @cloudflare/workers-types
 ```
 create a /functions/proxy.ts file
 ```ts
-import {proxyRequest} from "@sctg/nocors"
+import {proxyRequest} from "@sctg/nocors-pages"
 const WHITELIST_REGEX=".*"
 export const onRequest: PagesFunction = async (context) => {
   return proxyRequest(context,WHITELIST_REGEX)
