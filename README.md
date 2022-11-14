@@ -5,8 +5,8 @@ This is a very minimalistic proxy for enabling CORS on non CORS enabled sites.
 ## For Azure Static Web Apps  
 Create a new api entry with VSCode Azure tools or manually.  
 ```sh
-npm i --save @sctg/nocors
 cd api
+npm i --save @sctg/nocors
 npm i --save got
 npm i --save @azure/functions
 ```
