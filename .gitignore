@@ -6,3 +6,4 @@ dist
 build
 index.js
 *.d.tsbuild
+.vscode/settings.json

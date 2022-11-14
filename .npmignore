@@ -3,6 +3,7 @@
 .travis.yml
 npm-debug.log
 test/
+build/
 node_modules/
 TODO.md
 CHANGELOG.md
