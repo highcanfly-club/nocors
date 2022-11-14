@@ -43,6 +43,7 @@
     "test": "test"
   },
   "publishConfig": {
+    "access": "public",
     "tag": "beta"
   }
 }
