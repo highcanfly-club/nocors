@@ -1,6 +1,6 @@
 /**
- * @file  fontmin base
- * @author junmer eltorio
+ * @file  nocors base
+ * @author eltorio
  */
 
 /* eslint-env node */

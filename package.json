@@ -1,6 +1,6 @@
 {
   "name": "@sctg/nocors",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "description": "Minimalist noCors proxy for servless app",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,21 +21,25 @@
     "node": ">=16"
   },
   "scripts": {
-    "prepare-azure":"rm -rf build && mkdir -p build && cat src/index.ts src/azure.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Azure build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-azure/g' > build/package.json",
-    "prepare-pages":"rm -rf build && mkdir -p build && cat src/index.ts src/pages.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Pages build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-pages/g' > build/package.json",
-    "build-azure":"npm run prepare-azure && npm run build",
-    "build-pages":"npm run prepare-pages && npm run build",
+    "prepare-azure": "rm -rf build && mkdir -p build && cat src/index.ts src/azure.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Azure build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-azure/g' > build/package.json",
+    "prepare-pages": "rm -rf build && mkdir -p build && cat src/index.ts src/pages.ts | sed -e 's/\\.\\.\\/package\\.json/\\.\\/package\\.json/g' >> build/index.ts  && cp -a src/Pages build/ && cp tsconfig.json build/ && cat package.json | sed -e 's/@sctg\\/nocors/@sctg\\/nocors-pages/g' > build/package.json",
+    "build-azure": "npm run prepare-azure && npm run build",
+    "build-pages": "npm run prepare-pages && npm run build",
     "build": "rm -rf dist && cd build && npm run _build",
     "_build": "tsc && mv dist .. || exit 0",
-    "test": "mocha",
+    "test": "mocha -n loader=ts-node/esm --extension ts",
     "coverage": "nyc mocha --reporter spec --check-leaks test/"
   },
   "devDependencies": {
     "@azure/functions": "^3.2.0",
     "@cloudflare/workers-types": "^3.18.0",
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.0",
+    "@types/node": "^18.11.9",
     "chai": "^4.3.7",
     "got": "^12.5.2",
     "mocha": "^10.1.0",
+    "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
   },
   "bugs": {

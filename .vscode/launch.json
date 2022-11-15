@@ -2,6 +2,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "command": "npm test",
+            "name": "Run npm test",
+            "request": "launch",
+            "type": "node-terminal"
+        },
+        {
             "name": "Attach to Node Functions",
             "type": "node",
             "request": "attach",

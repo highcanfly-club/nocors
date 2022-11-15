@@ -42,7 +42,7 @@ const remoteRequest = async (
     decompress: false,
     headers: requestHeaders,
     body: body,
-    http2: true,
+    http2: false,
     throwHttpErrors: false,
   };
   return got(url, options);
@@ -98,10 +98,11 @@ export const proxyAzureRequest: ProxyAzureFunction = async function (
     } // not options so general case
     else {
       const res = await remoteRequest(url, method, requestHeaders, req.body);
+      const cleanedHeaders:any = Object.entries((res as any).headers).reduce((acc:any, [k, v]) => typeof k == "symbol" ? acc : (acc[k] = v, acc), {});
       return {
         status: res.statusCode,
         body: res.body,
-        headers: {...corsHeaders,...{'content-type':((res as any).headers)['content-type']}},
+        headers: {...cleanedHeaders,...corsHeaders} as HttpRequestHeaders,
       };
     }
   } catch (error: any) {
