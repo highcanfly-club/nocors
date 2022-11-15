@@ -56,7 +56,9 @@ https://www.npmjs.com/package/@sctg/nocors-pages
 
 # demo
 [Source code](https://github.com/highcanfly-club/nocors-cf).   
-https://nocors.pages.dev/proxy?url=https://www.example.org
+https://nocors.pages.dev/proxy?url=https://www.example.org  
+check the header Via:noCors-for-serverless v…
+
 # usage
 ```sh
 npm i --save @sctg/nocors-pages
