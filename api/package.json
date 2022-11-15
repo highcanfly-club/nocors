@@ -15,7 +15,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
-    "@sctg/nocors-azure": "^0.9.13",
+    "@sctg/nocors-azure": "^0.9.15",
     "agentkeepalive": "^4.2.1",
     "got": "^12",
     "iconv-lite": "^0.6.3"
